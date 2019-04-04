@@ -1,0 +1,81 @@
+﻿@model APIFINAL3.Models.CiudadWM
+@{
+    ViewBag.Title = "Home Page";
+}
+<br>
+<br>
+<div class="col-sm-7">
+    <h1 class="breadcrumb-title">Weather forecast</h1>
+</div>
+<br>
+<br>
+<br>
+<div class="container">
+  
+    <hr />
+    @using (Html.BeginForm("BuscarPais", "Home", FormMethod.Post, new { @class = "form-inline" }))
+    {
+
+        <div class="form-group">
+            <label class="sr-only"></label>
+            <div class="input-group">
+              
+                <input type="text"   warningclass="form-control border-color input-group-addon" name="codigoPais" id="codigoPais" placeholder="Your City">
+                <span> <button id="btnBuscar" type="submit" class="btn btn-warning">Search</button></span>
+            </div>
+        </div>
+        <br>
+        
+    }
+
+    </br>
+
+    @if (Model != null)
+    {
+        if (!string.IsNullOrEmpty(Model.cod))
+        {
+            <div class="panel panel-warning">
+                <div class="panel-heading text-center">
+                    <h3 class="panel-title">País: @Html.DisplayFor(Model => Model.city)</h3>
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <strong>Código alfa-2: </strong>@Html.DisplayFor(Model => Model.cnt)
+                        </div>
+                        <div class="col-lg-4">
+                            <strong>Código alfa-3: </strong>@Html.DisplayFor(Model => Model.cod)
+                        </div>
+                        <div class="col-lg-4">
+                            <strong>Capital: </strong>@Html.DisplayFor(Model => Model.message)
+                        </div>
+                    </div>
+                    <div class="row">
+                        <div class="col-lg-4">
+                            <strong>Region: </strong>@Html.DisplayFor(Model => Model.dt_txt)
+                        </div>
+                        
+                        
+                    </div>
+                    <div class="row">
+                        
+                      
+                    </div>
+                    <div class="row">
+                      
+                     
+                    </div>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="alert alert-warning">
+                <strong>Error!</strong> No se pudo consultar la información.
+            </div>
+        }
+    }
+
+</div>
+
+<h2 class="widget__title" align="center">Current weather and forecasts in your city</h2>
